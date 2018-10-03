@@ -1,13 +1,15 @@
+<!-- Required extensions:  mathjax -->
+
 # Search 
 
 ## Search Terminology
 
-- Search Tree --> Generated as the search space is traversed.(not always a tree in storage)
-- Search Space --> The items we can search and the relations between them
+- Search Tree --> Generated as the search space is traversed.(not always a tree in storage).
+- Search Space --> The items we can search and the relations between them.
 
 ---
 
-## Evaluating Searche
+## Evaluating Searches
 
 - Completeness --> Can we always reach the goal?
 - Time complexity --> If I can reach a goal , how long did it take?
@@ -81,4 +83,106 @@ BFS is a special case of UCF search where all edges are identical and positive. 
 
 ---
 
-## Inromed Search
+### Depth First Search
+
+We start from the top node, exploring each node's children down to the leaves, recursively, until the desired result is found. 
+
+- Completness --> Failes in infinite space, or looped space, so we need to modify spaces to avoid repeated states, but complete in finite spaces.
+- Time Complexity --> $O(b^m)$ , where $m$ is the maximum depth of the state space.
+- Space Complexity -->  $O(bm)$, ie, linear
+- Optimal --> No
+
+### BFS vs DFS
+
+TODO
+
+---
+
+### Depth Limited Search
+
+Similar to DFS, but limited by depth. The depth limit can be inferred from the problem statement.
+
+- Complete --> no, if goal is beyond i.
+- Time --> $b^i$, where i is the depth limit
+- Space --> b*i
+- Optimal --> no
+
+---
+
+### Iterative Deeping Depth First Search
+
+Same as DLS, but increments the search depth limit on every failed iteration. It combines the best of DFS and BFS. It is one of the best uninformed search methods, for large spaces with unknown depth.
+
+- Complete --> yes
+- Time --> $O(b^d)$
+- Space --> $O(bd)$
+- Optimal --> Yes, if cost is always the same.
+
+
+---
+
+### Bi-Direction Search 
+
+Searching from two directions, from the start to the goal and from the goal to the start.
+
+Complete-->  Yes
+Time --> $b^{d/2}$ + coordination time (assuming that one algorithm costs $b^d$)
+Space --> $b^{d/2}$
+Optimal --> Depends on algorithm
+
+It might not always give better performance or applicable, and coordination could be costly.
+ 
+---
+
+## Informed Search
+
+While uninformed search did not contain any sort of AI, informed search contains AI that changes the behavior while running.
+
+### Heuristics and Evaluation Function
+
+Hueristics is any approach to problem solving, learning, or discovery that employs a practical method, not guaranteed to be optimal, perfect, logical, or rational, but instead sufficient for reaching an immediate goal.
+
+The evaluation function $f(n)$ is a function that evaluates how close we are to our goal. It is a problem-specific function. 
+
+The function ranks the alternatives in every possbiel branching step.
+
+
+An  **admissible heuristic** never over or understates the distance to the goal, that is, it is **optimistic**.
+
+A heuristic is called admissable if $h(n) \le h^*(n)$, where $h^*(n)$ is the true cost. 
+
+---
+### Greedy Best-First Search
+
+Go to the next node that brings you closest to the goal by $f(n)$, that is to say,  $f(n) = h(n)$
+
+- Completeness --> no, can get stuck sometimes.
+- Time Complexity --> $O(b^m)$, where $m$ is the maximum depth of the search.
+- Space Complexity --> $O(b^m)$
+- Optimal --> No
+
+---
+
+### A* Search
+
+Go to the next node that brings you closer to the goal by $f(n)$ 
+that is cheapest, that is $f(n) = h(n) + g(n)$ where $g(n)$ where $g(n)$ is the cost so far and $h(n)$ is the estimated cost from $n$ to the goal
+
+- Completeness --> Yes
+- Time Complexity --> exponential
+- Space Complexity --> Stores all nodes in memory
+- Optimal --> Yes, if $h(n)$ is admissable.
+
+---
+
+### Memory Bound Heuristic Search
+
+The idea is something similar to iterative deeping search but the cut off is based on memory rather than depth.
+
+#### Rec Best-First Search
+
+---
+
+#### Simple Memory-Bounded A*
+
+---
